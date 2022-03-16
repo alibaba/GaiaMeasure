@@ -1,0 +1,118 @@
+/*
+ * Copyright (c) 2022, Alibaba Group Holding Limited;
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.preview-class::-webkit-scrollbar {
+    width: 8px;
+    height: 0px;
+}
+
+.preview-class::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 3px;
+    background-color: #242424;
+}
+
+.preview-class::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    background: transparent;
+}
+
+.rcs-custom-scroll {
+    min-height: 0;
+    min-width: 0;
+}
+
+.rcs-custom-scroll .rcs-outer-container {
+    overflow: hidden;
+}
+
+.rcs-custom-scroll .rcs-outer-container .rcs-positioning {
+    position: relative;
+}
+
+.rcs-custom-scroll .rcs-outer-container:hover .rcs-custom-scrollbar {
+    opacity: 1;
+    transition-duration: 0.2s;
+}
+
+.rcs-custom-scroll .rcs-inner-container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.rcs-custom-scroll .rcs-inner-container:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 0;
+    background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.05) 60%,
+            rgba(0, 0, 0, 0) 100%
+    );
+    pointer-events: none;
+    transition: height 0.1s ease-in;
+    will-change: height;
+}
+
+.rcs-custom-scroll .rcs-inner-container.rcs-content-scrolled:after {
+    height: 5px;
+    transition: height 0.15s ease-out;
+}
+
+.rcs-custom-scroll.rcs-scroll-handle-dragged .rcs-inner-container {
+    user-select: none;
+}
+
+.rcs-custom-scroll .rcs-custom-scrollbar {
+    position: absolute;
+    height: 100%;
+    width: 6px;
+    right: 3px;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.4s ease-out;
+    padding: 6px 0;
+    box-sizing: border-box;
+    will-change: opacity;
+    pointer-events: none;
+}
+
+.rcs-custom-scroll .rcs-custom-scrollbar.rcs-custom-scrollbar-rtl {
+    right: auto;
+    left: 3px;
+}
+
+.rcs-custom-scroll.rcs-scroll-handle-dragged .rcs-custom-scrollbar {
+    opacity: 1;
+}
+
+.rcs-custom-scroll .rcs-custom-scroll-handle {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.rcs-custom-scroll .rcs-inner-handle {
+    height: calc(100% - 12px);
+    margin-top: 6px;
+    background-color: rgba(78, 183, 245, 0.7);
+    border-radius: 3px;
+}
